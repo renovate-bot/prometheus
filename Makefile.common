@@ -62,6 +62,13 @@ PROMU        := $(FIRST_GOPATH)/bin/promu
 STATICCHECK  := $(FIRST_GOPATH)/bin/staticcheck
 pkgs          = ./...
 
+GOTEST := $(GO) test
+ifneq ($(CIRCLE_JOB),)
+ifneq ($(shell which gotestsum),)
+	GOTEST := gotestsum --junitfile test-results/unit-tests.xml --
+endif
+endif
+
 GO_VERSION        ?= $(shell $(GO) version)
 GO_BUILD_PLATFORM ?= $(subst /,-,$(lastword $(GO_VERSION)))
 
@@ -105,12 +112,12 @@ common-check_license:
 .PHONY: common-test-short
 common-test-short:
 	@echo ">> running short tests"
-	GO111MODULE=$(GO111MODULE) $(GO) test -short $(GOOPTS) $(pkgs)
+	GO111MODULE=$(GO111MODULE) $(GOTEST) -short $(GOOPTS) $(pkgs)
 
 .PHONY: common-test
 common-test:
 	@echo ">> running all tests"
-	GO111MODULE=$(GO111MODULE) $(GO) test -race $(GOOPTS) $(pkgs)
+	GO111MODULE=$(GO111MODULE) $(GOTEST) -race $(GOOPTS) $(pkgs)
 
 .PHONY: common-format
 common-format:
