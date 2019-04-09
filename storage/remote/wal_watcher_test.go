@@ -114,7 +114,7 @@ func Test_tail_samples(t *testing.T) {
 		series := enc.Series([]tsdb.RefSeries{
 			tsdb.RefSeries{
 				Ref:    uint64(ref),
-				Labels: labels.Labels{labels.Label{"__name__", fmt.Sprintf("metric_%d", i)}},
+				Labels: labels.Labels{labels.Label{Name: "__name__", Value: fmt.Sprintf("metric_%d", i)}},
 			},
 		}, nil)
 		testutil.Ok(t, w.Log(series))
@@ -183,7 +183,7 @@ func Test_readToEnd_noCheckpoint(t *testing.T) {
 		series := enc.Series([]tsdb.RefSeries{
 			tsdb.RefSeries{
 				Ref:    uint64(i),
-				Labels: labels.Labels{labels.Label{"__name__", fmt.Sprintf("metric_%d", i)}},
+				Labels: labels.Labels{labels.Label{Name: "__name__", Value: fmt.Sprintf("metric_%d", i)}},
 			},
 		}, nil)
 		recs = append(recs, series)
@@ -247,7 +247,7 @@ func Test_readToEnd_withCheckpoint(t *testing.T) {
 		series := enc.Series([]tsdb.RefSeries{
 			tsdb.RefSeries{
 				Ref:    uint64(ref),
-				Labels: labels.Labels{labels.Label{"__name__", fmt.Sprintf("metric_%d", i)}},
+				Labels: labels.Labels{labels.Label{Name: "__name__", Value: fmt.Sprintf("metric_%d", i)}},
 			},
 		}, nil)
 		testutil.Ok(t, w.Log(series))
@@ -273,7 +273,7 @@ func Test_readToEnd_withCheckpoint(t *testing.T) {
 		series := enc.Series([]tsdb.RefSeries{
 			tsdb.RefSeries{
 				Ref:    uint64(i),
-				Labels: labels.Labels{labels.Label{"__name__", fmt.Sprintf("metric_%d", i)}},
+				Labels: labels.Labels{labels.Label{Name: "__name__", Value: fmt.Sprintf("metric_%d", i)}},
 			},
 		}, nil)
 		testutil.Ok(t, w.Log(series))
@@ -329,7 +329,7 @@ func Test_readCheckpoint(t *testing.T) {
 		series := enc.Series([]tsdb.RefSeries{
 			tsdb.RefSeries{
 				Ref:    uint64(ref),
-				Labels: labels.Labels{labels.Label{"__name__", fmt.Sprintf("metric_%d", i)}},
+				Labels: labels.Labels{labels.Label{Name: "__name__", Value: fmt.Sprintf("metric_%d", i)}},
 			},
 		}, nil)
 		testutil.Ok(t, w.Log(series))
@@ -391,7 +391,7 @@ func Test_checkpoint_seriesReset(t *testing.T) {
 		series := enc.Series([]tsdb.RefSeries{
 			tsdb.RefSeries{
 				Ref:    uint64(ref),
-				Labels: labels.Labels{labels.Label{"__name__", fmt.Sprintf("metric_%d", i)}},
+				Labels: labels.Labels{labels.Label{Name: "__name__", Value: fmt.Sprintf("metric_%d", i)}},
 			},
 		}, nil)
 		testutil.Ok(t, w.Log(series))

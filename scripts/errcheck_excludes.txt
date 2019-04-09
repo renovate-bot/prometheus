@@ -1,0 +1,13 @@
+fmt.Fprintf
+fmt.Fprintln
+(hash.Hash).Write
+(net/http.ResponseWriter).Write
+(*net/http.Server).Shutdown
+(io.Closer).Close
+io.WriteString
+//(*os.File).Close
+
+(github.com/prometheus/prometheus/storage.Appender).Rollback
+// Exclude both vendored and un-vendored to cover both vendor mode and module mode. 
+(github.com/prometheus/prometheus/vendor/github.com/go-kit/kit/log.Logger).Log
+(github.com/go-kit/kit/log.Logger).Log
